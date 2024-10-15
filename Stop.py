@@ -1,15 +1,17 @@
+
 import CategoriesOfTransport
-import Transport
 import random
 
-class Stop(Transport):
-    def __init__(self, pathLength, numberOfStops):
+
+class Stop(Bus):
+    def __init__(self,model, speed, pathLength, numberOfStops):
         self.pathLength = pathLength
         self.numberOfStops = numberOfStops
+        super().__init__(model,speed)
 
-    def time(self, speed):
+    def time(self):
 
-        arrivalTime = (self.pathLength * self.numberOfStops) / speed
+        arrivalTime = (self.pathLength * self.numberOfStops) / self.speed
 
         ran = random.randint(0,1)
         if ran == 0 :
@@ -17,9 +19,14 @@ class Stop(Transport):
         else:
             arrivalTime -= random.randint(0,5)
 
-        return arrivalTime
+        print(arrivalTime)
 
 
+
+obj = Stop('Nissan', 50, 600, 5)
+
+
+obj.time()
 
 
 
