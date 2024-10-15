@@ -5,9 +5,9 @@ class Transport(ABC):
         self.model = model
         self.speed = speed
 
-    @abstractmethod
-    def move(self):
-        pass
+    # @abstractmethod
+    # def move(self):
+    #     pass
 
     @abstractmethod
     def time(self):
