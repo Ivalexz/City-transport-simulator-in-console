@@ -72,4 +72,8 @@ obj.time()
 obj1.time()
 obj2.time()
 
+obj.showInfoBus()
+obj1.showInfoTrolleybus()
+obj2.showInfoTram()
+
 
