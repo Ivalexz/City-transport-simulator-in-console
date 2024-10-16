@@ -33,7 +33,7 @@ class Trolleybus(Transport):
         self.numberOfStops = numberOfStops
         self.arrivalTime = arrivalTime
 
-    def time(self):
+    def time(self): 
 
         self.arrivalTime = (self.pathLength * self.numberOfStops) / (self.speed * 3.6)
 
