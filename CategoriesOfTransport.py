@@ -88,5 +88,3 @@ obj.showInfoBus()
 obj1.showInfoTrolleybus()
 obj2.showInfoTram()
 
-
-
