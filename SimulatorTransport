@@ -76,7 +76,7 @@ trolleybus_schedule = Schedule(trolleybus, trolleybus_route, 8)
 print("\n=== Симуляція для тролейбуса ===")
 trolleybus_schedule.simulate()
 
-# це просто переписав з євгена але добавив трулейбос але поки непоміняємо зупинки
+# це просто переписав  добавив трулейбос але поки непоміняємо зупинки
 bus_info = TransportInformation('Автобус', "Паркова алея", "Автобусний вокзал")
 bus_info.showInfo()
 
