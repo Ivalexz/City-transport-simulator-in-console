@@ -68,18 +68,18 @@ class RouteActions:
         self.user_choice_stop = user_choice_stop # З якого маршруту видалити зупинку
         self.where_remove_stop = where_remove_stop # Яку зупинку видалити
         if self.user_choice_stop > 0 and self.user_choice_stop <= len(self.all_routes):
-            if self.where_remove_stop > 0 and self.where_remove_stop <= len(self.all_routes[self.user_choice_route - 1]):  # чи місце видалення зупинки не менше, чим список зупинок певного маршруту
-                self.all_routes[self.user_choice_route - 1].pop(where_remove_stop - 1)  # видаляємо зупинку з вказаного місця вказаного маршруту
-                print(f'Зупинку "{self.all_routes[self.user_choice_route - 1][where_remove_stop - 1]}" видалено')
+            if self.where_remove_stop > 0 and self.where_remove_stop <= len(self.all_routes[self.user_choice_stop - 1]):  # чи місце видалення зупинки не менше, чим список зупинок певного маршруту
+                print(f'Зупинку "{self.all_routes[self.user_choice_stop - 1][where_remove_stop - 1]}" видалено')
+                self.all_routes[self.user_choice_stop - 1].pop(where_remove_stop - 1)  # видаляємо зупинку з вказаного місця вказаного маршруту
             else:
                 print('Такої зупинки не існує')
         else:
             print('Такого маршруту не існує')
 
 bus=RouteActions('bus')
-# bus.add_route(4)
-bus.show_all_routes()
-bus.add_stop(2, 'lkdvfskjvdfkjvd', 15)
+# bus.add_route(5)
+# bus.show_all_routes()
+# bus.add_stop(2, 'lkdvfskjvdfkjvd', 15)
 # bus.show_route(2)
 bus.remove_stop(2, 6)
 bus.show_route(2)
