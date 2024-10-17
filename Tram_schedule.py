@@ -1,5 +1,5 @@
 
-class RouteActions:
+class TransportInformation:
     def __init__(self, for_transport):
         self.for_transport = for_transport
         self.list_of_stops_bus_and_trolleybus = ["Паркова алея", 'Площа Незалежності', 'Залізничний вокзал',
@@ -76,10 +76,12 @@ class RouteActions:
         else:
             print('Такого маршруту не існує')
 
-bus=RouteActions('bus')
+bus=TransportInformation('bus')
 # bus.add_route(5)
 # bus.show_all_routes()
-# bus.add_stop(2, 'lkdvfskjvdfkjvd', 15)
-# bus.show_route(2)
+bus.add_stop(2, 'lkdvfskjvdfkjvd', 15)
+bus.show_route(2)
 bus.remove_stop(2, 6)
+bus.remove_stop(2, 8)
+bus.add_stop(2, 'Пошта', 4)
 bus.show_route(2)
