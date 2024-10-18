@@ -95,6 +95,11 @@ def if_two():
         if choice_what_to_do == 6:
             print("Повернення до головного меню...")
             break
+
+        else:
+            print('Такої команди не існує')
+            choice_what_to_do = 0
+
 def if_three():
     print('Ви перейшли на сторінку симуляції руху транспортного засобу. Що Вас цікавить?')
     choice_what_to_simulate=0
