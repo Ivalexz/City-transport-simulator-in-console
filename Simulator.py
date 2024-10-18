@@ -143,9 +143,9 @@ tram = Tram('Tram', 45, 600, 6, 0)  # Додано arrivalTime = 0
 trolleybus = Trolleybus('Ford', 20, 600, 6, 0)  # Додано arrivalTime = 0
 
 # Встановлюємо розклад (інтервал між зупинками в хвилинах)
-bus_schedule = ScheduleBus('Bus', 35, 600, 6, 0, bus, bus_route, 10)  # Додано arrivalTime = 0
-tram_schedule = ScheduleTram('tram', 40, 600, 6, 0, tram, tram_route, 12)  # Додано arrivalTime = 0
-trolleybus_schedule = ScheduleTroll('trolleybus', 25, 600, 6, 0, trolleybus, bus_route, 8)  # Додано arrivalTime = 0
+bus_schedule = ScheduleBus('Bus', 35, 600, 6, 0, bus, bus_route, 5)  # Додано arrivalTime = 0
+tram_schedule = ScheduleTram('tram', 40, 600, 6, 0, tram, tram_route, 5)  # Додано arrivalTime = 0
+trolleybus_schedule = ScheduleTroll('trolleybus', 25, 600, 6, 0, trolleybus, bus_route, 5)  # Додано arrivalTime = 0
 
 bus.time()
 bus.showInfoBus()
