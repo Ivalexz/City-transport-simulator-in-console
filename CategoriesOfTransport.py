@@ -82,7 +82,7 @@ class Tram(Transport):
 
 
 
-obj = Bus('Nissan', 35, 600, 10)
+obj = Bus('Nissan', 30, 600, 10)
 obj1 = Trolleybus('Ford', 20, 600, 10)
 obj2 = Tram('Tram', 40, 600,10)
 
