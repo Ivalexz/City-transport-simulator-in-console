@@ -1,4 +1,9 @@
 from Tram_schedule import TransportInformation
+from Simulator import Route
+from Simulator import ScheduleBus
+from Simulator import ScheduleTram
+from Simulator import ScheduleTroll
+from CategoriesOfTransport import Bus, Tram, Trolleybus
 
 obj = TransportInformation('simple transport')
 
@@ -11,7 +16,7 @@ def if_two():
     while choice_what_to_do == 0:
         try:
             print()
-            choice_what_to_do = int(input('1 - додати маршрут \n2 - видалити маршрут \n3 - переглянути певний маршрут \n4 - додати зупинку \n5 - видалити зупинку \n6 - вийти з сторінки \nВаш вибір:'))
+            choice_what_to_do = int(input('1 - додати маршрут \n2 - видалити маршрут \n3 - переглянути певний маршрут \n4 - додати зупинку \n5 - видалити зупинку \n6 - повернутися на головне меню \nВаш вибір:'))
         except ValueError:
             print('Ввід команд здійснюється числами')
             continue
@@ -90,9 +95,72 @@ def if_two():
         if choice_what_to_do == 6:
             print("Повернення до головного меню...")
             break
+def if_three():
+    print('Ви перейшли на сторінку симуляції руху транспортного засобу. Що Вас цікавить?')
+    choice_what_to_simulate=0
+    while choice_what_to_simulate == 0:
+        try:
+            print()
+            choice_what_to_simulate = int(input('1 - побачити інформацію про доступні транспортні засоби \n2 - вивести симуляцію руху транспорту протягом цілого дня \n3 - повернутися на головне меню \nВаш вибір:'))
+        except ValueError:
+            print('Ввід команд здійснюється числами')
+            continue
+        if choice_what_to_simulate==1:
+            bus = Bus('Nissan', 30, 600, 10, 0)  # Додано arrivalTime = 0
+            bus.time()
+            bus.showInfoBus()
+
+            trolleybus = Trolleybus('Ford', 20, 600, 10, 0)  # Додано arrivalTime = 0
+            trolleybus.time()
+            trolleybus.showInfoTrolleybus()
+
+            tram = Tram('Tram', 40, 600, 10, 0)  # Додано arrivalTime = 0
+            tram.time()
+            tram.showInfoTram()
+
+        elif choice_what_to_simulate == 2:
+            choice_transport = 0
+            while choice_transport == 0:
+                try:
+                    choice_transport = int(input("Який маршрут ви хочете побачити? Функція доступна лише для двох початкових маршрутів. \nВаш вибір(1, 2): "))
+                except ValueError:
+                    print('Ввід команд здійснюється числами')
+                    continue
+
+                if choice_transport == 1:
+                    bus_route = Route("Автобусний маршрут", obj.list_of_stops_bus_and_trolleybus)
+                    bus = Bus('Nissan', 30, 600, 10, 0)  # Додано arrivalTime = 0
+                    bus_schedule = ScheduleBus('Bus', 35, 600, 10, 0, bus, bus_route, 5)  # Додано arrivalTime = 0
+                    print("\n=== Симуляція для автобуса ===")
+                    bus_schedule.simulate()
+
+                    trolleybus = Trolleybus('Ford', 20, 600, 10, 0)  # Додано arrivalTime = 0
+                    trolleybus_schedule = ScheduleTroll('trolleybus', 25, 600, 10, 0, trolleybus, bus_route,5)  # Додано arrivalTime = 0
+                    print("\n=== Симуляція для тролейбуса ===")
+                    trolleybus_schedule.simulate()
+
+                elif choice_transport == 2:
+                    tram_route = Route("Трамвайний маршрут", obj.list_of_stops_tram)
+                    tram = Tram('Tram', 40, 600, 10, 0)  # Додано arrivalTime = 0
+                    tram_schedule = ScheduleTram('tram', 40, 600, 10, 0, tram, tram_route, 5)  # Додано arrivalTime = 0
+                    print("\n=== Симуляція для трамвая ===")
+                    tram_schedule.simulate()
+
+                else:
+                    print('Такої команди не існує')
+                    choice_transport = 0
+
+        elif choice_what_to_simulate == 3:
+            print("Повернення до головного меню...")
+            break
+
+        else:
+            print('Такої команди не існує')
+            choice_what_to_simulate = 0
+
 
 def output_routes_func():
-    print('Вітаємо у симуляторі міського транспорту у консолі! Меню:')
+    print('Вітаємо у симуляторі міського транспорту у консолі! Головне меню:')
     start_users_choice=0
     while start_users_choice==0:
         try:
@@ -108,7 +176,8 @@ def output_routes_func():
             if_two()
             start_users_choice = 0
         elif start_users_choice==3:
-            print(3)
+            if_three()
+            start_users_choice = 0
         elif start_users_choice == 4:
             print('Завершення...')
             break
@@ -116,4 +185,4 @@ def output_routes_func():
             print('Такої команди не існує')
             start_users_choice=0
 
-output_routes_func()
+# output_routes_func()
