@@ -39,12 +39,12 @@ class Schedule:
                 self.current_time += self.interval_between_stops + delay
 
                 formatted_time = self.convert_minutes_to_time(self.current_time)
-                if delay == 0:
+                if delay == 0 :
                     status = "на часі"
-                elif delay > 0:
-                    status = f'запізнення на {delay} хв'
+                elif delay > 0 :
+                    status = 'запізнення'
                 else:
-                    status = f'випередження на {delay * (-1)} хв'
+                    status = 'випередження'
                 print(f"Прибуття на зупинку {stop}: {formatted_time} ({status})")
 
 
@@ -52,6 +52,7 @@ class Schedule:
 bus_info = TransportInformation('Автобус')
 tram_info = TransportInformation('Трамвай')
 trolleybus_info = TransportInformation('Тролейбус')
+
 
 # Створюємо маршрути на основі інформації з Tram_schedule
 bus_route = Route("Автобусний маршрут", bus_info.list_of_stops_bus_and_trolleybus)
@@ -66,6 +67,12 @@ trolleybus = Trolleybus('Ford', 20, 600, 6)
 bus_schedule = Schedule(bus, bus_route, 10)
 tram_schedule = Schedule(tram, tram_route, 12)
 trolleybus_schedule = Schedule(trolleybus, bus_route, 8)  # Використовуємо той самий маршрут, що й для автобуса
+
+bus.time()
+bus.showInfoBus()
+
+bus=TransportInformation('bus')
+bus.add_stop(1, 'lkdvfskjvdfkjvd', 9)
 
 # Симуляція руху
 print("\n=== Симуляція для автобуса ===")
