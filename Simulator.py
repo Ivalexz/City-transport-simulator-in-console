@@ -129,45 +129,42 @@ class ScheduleTram(Tram):
 
 
 # Отримуємо маршрути з файлу Tram_schedule
-bus_info = TransportInformation('Автобус')
-tram_info = TransportInformation('Трамвай')
-trolleybus_info = TransportInformation('Тролейбус')
-
-# Створюємо маршрути на основі інформації з Tram_schedule
-bus_route = Route("Автобусний маршрут", bus_info.list_of_stops_bus_and_trolleybus)
-tram_route = Route("Трамвайний маршрут", tram_info.list_of_stops_tram)
-
+# bus_info = TransportInformation('Автобус')
+# tram_info = TransportInformation('Трамвай')
+# trolleybus_info = TransportInformation('Тролейбус')
+#
+# # Створюємо маршрути на основі інформації з Tram_schedule
+# bus_route = Route("Автобусний маршрут", bus_info.list_of_stops_bus_and_trolleybus)
+# tram_route = Route("Трамвайний маршрут", tram_info.list_of_stops_tram)
+#
 # Використовуємо транспортні засоби з файлу CategoriesOfTransport
-bus = Bus('Nissan', 30, 600, 10, 0)  # Додано arrivalTime = 0
-tram = Tram('Tram', 40, 600, 10, 0)  # Додано arrivalTime = 0
-trolleybus = Trolleybus('Ford', 20, 600, 10, 0)  # Додано arrivalTime = 0
+# bus = Bus('Nissan', 30, 600, 10, 0)  # Додано arrivalTime = 0
+# tram = Tram('Tram', 40, 600, 10, 0)  # Додано arrivalTime = 0
+# trolleybus = Trolleybus('Ford', 20, 600, 10, 0)  # Додано arrivalTime = 0
+#
+# # Встановлюємо розклад (інтервал між зупинками в хвилинах)
+# bus_schedule = ScheduleBus('Bus', 35, 600, 10, 0, bus, bus_route, 5)  # Додано arrivalTime = 0
+# tram_schedule = ScheduleTram('tram', 40, 600, 10, 0, tram, tram_route, 5)  # Додано arrivalTime = 0
+# trolleybus_schedule = ScheduleTroll('trolleybus', 25, 600, 10, 0, trolleybus, bus_route, 5)  # Додано arrivalTime = 0
+#
+# bus.time()
+# bus.showInfoBus()
+#
+# trolleybus.time()
+# trolleybus.showInfoTrolleybus()
+#
+# tram.time()
+# tram.showInfoTram()
 
-# Встановлюємо розклад (інтервал між зупинками в хвилинах)
-bus_schedule = ScheduleBus('Bus', 30, 600, 10, 0, bus, bus_route, 5)  # Додано arrivalTime = 0
-tram_schedule = ScheduleTram('tram', 40, 600, 10, 0, tram, tram_route, 5)  # Додано arrivalTime = 0
-trolleybus_schedule = ScheduleTroll('trolleybus', 20, 600, 10, 0, trolleybus, bus_route, 5)  # Додано arrivalTime = 0
+# bus_info = TransportInformation('bus')
+# bus_info.add_stop(1, 'lkdvfskjvdfkjvd', 9)
 
-bus.time()
-bus.showInfoBus()
-
-trolleybus.time()
-trolleybus.showInfoTrolleybus()
-
-tram.time()
-tram.showInfoTram()
-
-bus_info = TransportInformation('bus')
-bus_info.add_stop(1, 'lkdvfskjvdfkjvd', 9)
-
-# Симуляція руху
-print("\n=== Симуляція для автобуса ===")
-bus_schedule.simulate()
-
-print("\n=== Симуляція для трамвая ===")
-tram_schedule.simulate()
-
-print("\n=== Симуляція для тролейбуса ===")
-trolleybus_schedule.simulate()
-
-
-
+# # Симуляція руху
+# print("\n=== Симуляція для автобуса ===")
+# bus_schedule.simulate()
+#
+# print("\n=== Симуляція для трамвая ===")
+# tram_schedule.simulate()
+#
+# print("\n=== Симуляція для тролейбуса ===")
+# trolleybus_schedule.simulate()
