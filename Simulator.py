@@ -169,3 +169,5 @@ tram_schedule.simulate()
 print("\n=== Симуляція для тролейбуса ===")
 trolleybus_schedule.simulate()
 
+
+
