@@ -39,12 +39,12 @@ class Schedule:
                 self.current_time += self.interval_between_stops + delay
 
                 formatted_time = self.convert_minutes_to_time(self.current_time)
-                if delay == 0 :
+                if delay == 0:
                     status = "на часі"
-                elif delay > 0 :
-                    status = 'запізнення'
+                elif delay > 0:
+                    status = f'запізнення на {delay} хв'
                 else:
-                    status = 'випередження'
+                    status = f'випередження на {delay * (-1)} хв'
                 print(f"Прибуття на зупинку {stop}: {formatted_time} ({status})")
 
 
