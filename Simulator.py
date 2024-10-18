@@ -14,13 +14,17 @@ class Route:
             print(f"{index + 1}. {stop}")
 
 
-class Schedule:
-    def __init__(self, transport, route, interval_between_stops):
+class ScheduleBus(Bus):
+    def __init__(self, model, speed, pathLength, numberOfStops, arrivalTime, transport, route, interval_between_stops):
         self.transport = transport
         self.route = route
         self.interval_between_stops = interval_between_stops
         self.current_time = 8 * 60  # Початковий час 8:00
         self.end_time = 22 * 60  # Кінцевий час 22:00
+        super().__init__(model, speed, pathLength, numberOfStops, arrivalTime)
+
+    def showTime(self):
+        bus.time()
 
     def convert_minutes_to_time(self, total_minutes):
         hours = total_minutes // 60
@@ -39,9 +43,85 @@ class Schedule:
                 self.current_time += self.interval_between_stops + delay
 
                 formatted_time = self.convert_minutes_to_time(self.current_time)
-                if delay == 0 :
+                if delay == 0:
                     status = "на часі"
-                elif delay > 0 :
+                elif delay > 0:
+                    status = f'запізнення на {delay} хв'
+                else:
+                    status = f'випередження на {delay *(-1)} хв'
+                print(f"Прибуття на зупинку {stop}: {formatted_time} ({status})")
+
+
+class ScheduleTroll(Trolleybus):
+    def __init__(self, model, speed, pathLength, numberOfStops, arrivalTime, transport, route, interval_between_stops):
+        self.transport = transport
+        self.route = route
+        self.interval_between_stops = interval_between_stops
+        self.current_time = 8 * 60  # Початковий час 8:00
+        self.end_time = 22 * 60  # Кінцевий час 22:00
+        super().__init__(model, speed, pathLength, numberOfStops, arrivalTime)
+
+    def showTime(self):
+        trolleybus.time()
+
+    def convert_minutes_to_time(self, total_minutes):
+        hours = total_minutes // 60
+        minutes = total_minutes % 60
+        return f"{hours:02d}:{minutes:02d}"
+
+    def simulate(self):
+        print(f"Симуляція маршруту {self.route.name} для {self.transport.model} (Швидкість: {self.transport.speed} км/год)")
+
+        while self.current_time < self.end_time:
+            for stop in self.route.stops:
+                if self.current_time >= self.end_time:
+                    break
+
+                delay = random.randint(-3, 3)  # Генеруємо затримку або випередження в хвилинах
+                self.current_time += self.interval_between_stops + delay
+
+                formatted_time = self.convert_minutes_to_time(self.current_time)
+                if delay == 0:
+                    status = "на часі"
+                elif delay > 0:
+                    status = 'запізнення'
+                else:
+                    status = 'випередження'
+                print(f"Прибуття на зупинку {stop}: {formatted_time} ({status})")
+
+
+class ScheduleTram(Tram):
+    def __init__(self, model, speed, pathLength, numberOfStops, arrivalTime, transport, route, interval_between_stops):
+        self.transport = transport
+        self.route = route
+        self.interval_between_stops = interval_between_stops
+        self.current_time = 8 * 60  # Початковий час 8:00
+        self.end_time = 22 * 60  # Кінцевий час 22:00
+        super().__init__(model, speed, pathLength, numberOfStops, arrivalTime)
+
+    def showTime(self):
+        tram.time()
+
+    def convert_minutes_to_time(self, total_minutes):
+        hours = total_minutes // 60
+        minutes = total_minutes % 60
+        return f"{hours:02d}:{minutes:02d}"
+
+    def simulate(self):
+        print(f"Симуляція маршруту {self.route.name} для {self.transport.model} (Швидкість: {self.transport.speed} км/год)")
+
+        while self.current_time < self.end_time:
+            for stop in self.route.stops:
+                if self.current_time >= self.end_time:
+                    break
+
+                delay = random.randint(-3, 3)  # Генеруємо затримку або випередження в хвилинах
+                self.current_time += self.interval_between_stops + delay
+
+                formatted_time = self.convert_minutes_to_time(self.current_time)
+                if delay == 0:
+                    status = "на часі"
+                elif delay > 0:
                     status = 'запізнення'
                 else:
                     status = 'випередження'
@@ -53,26 +133,25 @@ bus_info = TransportInformation('Автобус')
 tram_info = TransportInformation('Трамвай')
 trolleybus_info = TransportInformation('Тролейбус')
 
-
 # Створюємо маршрути на основі інформації з Tram_schedule
 bus_route = Route("Автобусний маршрут", bus_info.list_of_stops_bus_and_trolleybus)
 tram_route = Route("Трамвайний маршрут", tram_info.list_of_stops_tram)
 
-# Використовуємо транспортні засоби з файлу CategoriesOfTransport використовується усе крім останього стопу
-bus = Bus('Nissan', 60, 600, 6)
-tram = Tram('Tram', 45, 600, 6)
-trolleybus = Trolleybus('Ford', 20, 600, 6)
+# Використовуємо транспортні засоби з файлу CategoriesOfTransport
+bus = Bus('Nissan', 60, 600, 6, 0)  # Додано arrivalTime = 0
+tram = Tram('Tram', 45, 600, 6, 0)  # Додано arrivalTime = 0
+trolleybus = Trolleybus('Ford', 20, 600, 6, 0)  # Додано arrivalTime = 0
 
 # Встановлюємо розклад (інтервал між зупинками в хвилинах)
-bus_schedule = Schedule(bus, bus_route, 10)
-tram_schedule = Schedule(tram, tram_route, 12)
-trolleybus_schedule = Schedule(trolleybus, bus_route, 8)  # Використовуємо той самий маршрут, що й для автобуса
+bus_schedule = ScheduleBus('Bus', 35, 600, 6, 0, bus, bus_route, 10)  # Додано arrivalTime = 0
+tram_schedule = ScheduleTram('tram', 40, 600, 6, 0, tram, tram_route, 12)  # Додано arrivalTime = 0
+trolleybus_schedule = ScheduleTroll('trolleybus', 25, 600, 6, 0, trolleybus, bus_route, 8)  # Додано arrivalTime = 0
 
 bus.time()
 bus.showInfoBus()
 
-bus=TransportInformation('bus')
-bus.add_stop(1, 'lkdvfskjvdfkjvd', 9)
+bus_info = TransportInformation('bus')
+bus_info.add_stop(1, 'lkdvfskjvdfkjvd', 9)
 
 # Симуляція руху
 print("\n=== Симуляція для автобуса ===")
