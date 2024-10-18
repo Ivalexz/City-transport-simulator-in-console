@@ -1,4 +1,3 @@
-
 class TransportInformation:
     def __init__(self, for_transport):
         self.for_transport = for_transport
@@ -15,8 +14,9 @@ class TransportInformation:
         self.all_routes.append(self.list_of_stops_tram)
         self.all_routes.append(self.list_of_stops_bus_and_trolleybus)
 
-    def add_route(self, number_of_stops):
+    def add_route(self, number_of_stops, for_transport):
         self.number_of_stops=number_of_stops
+        self.for_transport=for_transport
         new_route =[]
         for i in range(number_of_stops):
             new_route.append(input(f"Введіть назву зупинки №{i+1}: "))
@@ -75,13 +75,3 @@ class TransportInformation:
                 print('Такої зупинки не існує')
         else:
             print('Такого маршруту не існує')
-
-bus=TransportInformation('bus')
-# bus.add_route(5)
-# bus.show_all_routes()
-bus.add_stop(2, 'lkdvfskjvdfkjvd', 15)
-bus.show_route(2)
-bus.remove_stop(2, 6)
-bus.remove_stop(2, 8)
-bus.add_stop(2, 'Пошта', 4)
-bus.show_route(2)
